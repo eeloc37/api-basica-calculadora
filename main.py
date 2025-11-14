@@ -52,3 +52,12 @@ def dividir(datos: Operacion):
             detail="No se puede dividir entre cero"
         )
     return {"resultado": datos.a / datos.b}
+
+@app.post("/modulo", status_code=status.HTTP_201_CREATED)
+def modulo(datos: Operacion):
+    """Calcula el modulo de a % b."""
+    try:
+        resultado = datos.a % datos.b
+        return {"resultado": resultado}
+    except ZeroDivisionError:
+        return {"error": "No se puede dividir entre cero"}
